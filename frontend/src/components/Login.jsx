@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { Icons } from '../App'
 import { UserCircleIcon } from '@heroicons/react/24/solid'
-
+import { LockClosedIcon } from '@heroicons/react/24/solid'
+import { EnvelopeIcon } from '@heroicons/react/24/solid'
+import { InformationCircleIcon } from '@heroicons/react/24/solid'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
+import { ArrowPathIcon } from '@heroicons/react/24/solid'
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -27,7 +30,9 @@ export default function Login() {
                 setSuccess('Đăng nhập thành công!')
                 localStorage.setItem('user', JSON.stringify(response.data.user))
                 // Reload trang để chuyển sang Dashboard
+                setTimeout(function () {
                 window.location.reload()
+                }, 2000)
             }
         } catch (err) {
             setError(err.response?.data?.message || 'Có lỗi xảy ra')
@@ -57,7 +62,7 @@ export default function Login() {
                             </label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <Icons.MdEmail className="h-5 w-5 text-gray-400" />
+                                    <EnvelopeIcon className="h-5 w-5 text-gray-400" />
                                 </div>
                                 <input
                                     id="email"
@@ -77,7 +82,7 @@ export default function Login() {
                             </label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <Icons.RiLockPasswordLine className="h-5 w-5 text-gray-400" />
+                                    <LockClosedIcon className="h-5 w-5 text-gray-400" />
                                 </div>
                                 <input
                                     id="password"
@@ -96,7 +101,7 @@ export default function Login() {
                     {/* Error message */}
                     {error && (
                         <div className="rounded-lg bg-red-50 p-4 text-sm text-red-600 flex items-center">
-                            <Icons.BiErrorCircle className="w-5 h-5 mr-2 text-red-500" />
+                            <InformationCircleIcon className="w-5 h-5 mr-2 text-red-500" />
                             {error}
                         </div>
                     )}
@@ -104,7 +109,7 @@ export default function Login() {
                     {/* Success message */}
                     {success && (
                         <div className="rounded-lg bg-green-50 p-4 text-sm text-green-600 flex items-center">
-                            <Icons.AiOutlineCheckCircle className="w-5 h-5 mr-2 text-green-500" />
+                            <CheckCircleIcon className="w-5 h-5 mr-2 text-green-500" />
                             {success}
                         </div>
                     )}
@@ -121,10 +126,10 @@ export default function Login() {
                             className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white 
                                 ${loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
                             {loading && (
-                                <Icons.AiOutlineLoading3Quarters className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
+                                <ArrowPathIcon className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
                             )}
-                                    <UserCircleIcon className='h-5 w-5 mr-1'/>
-
+                                <UserCircleIcon className='h-5 w-5 mr-1'/>
+                        
                             {loading ? 'Đang xử lý...' : 'Đăng nhập'}
                                     
 

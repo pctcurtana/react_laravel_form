@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { Icons } from '../App'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
+import { InformationCircleIcon } from '@heroicons/react/24/solid'
+import { UserIcon } from '@heroicons/react/24/solid'
+import { EnvelopeIcon } from '@heroicons/react/24/solid'
+import { LockClosedIcon } from '@heroicons/react/24/solid'
+import { ArrowPathIcon } from '@heroicons/react/24/solid'
+import { PencilIcon } from '@heroicons/react/24/solid'
+
+
 
 export default function Register() {
     const [username, setuserName] = useState('')
@@ -42,7 +50,7 @@ const handleSubmit = async (e) => {
             const errorMessages = Object.values(err.response.data.errors).flat()
             setError(errorMessages.join('\n'))
         } else {
-            setError(err.response?.data?.message || 'Có lỗi xảy ra')
+            setError( 'Có lỗi xảy ra')
         }
     } finally {
         setLoading(false)
@@ -72,7 +80,7 @@ const handleSubmit = async (e) => {
                             </label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Icons.FaUser className="h-5 w-5 text-gray-400" />
+                                <UserIcon className="h-5 w-5 text-gray-400" />
                                 </div>
                                 <input
                                     id="name"
@@ -93,7 +101,7 @@ const handleSubmit = async (e) => {
                             </label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Icons.MdEmail className="h-5 w-5 text-gray-400" />
+                                <EnvelopeIcon className="h-5 w-5 text-gray-400" />
 
                                 </div>
                                 <input
@@ -116,7 +124,7 @@ const handleSubmit = async (e) => {
                                 </label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <Icons.RiLockPasswordLine className="h-5 w-5 text-gray-400" />
+                                    <LockClosedIcon className="h-5 w-5 text-gray-400" />
 
                                     </div>
                                     <input
@@ -137,7 +145,7 @@ const handleSubmit = async (e) => {
                                 </label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <Icons.RiLockPasswordLine className="h-5 w-5 text-gray-400" />
+                                    <LockClosedIcon className="h-5 w-5 text-gray-400" />
 
                                     </div>
                                     <input
@@ -156,14 +164,14 @@ const handleSubmit = async (e) => {
                     {/* Error and Success messages */}
                     {error && (
                         <div className="rounded-lg bg-red-50 p-4 text-sm text-red-600 flex items-center">
-                            <Icons.RiCloseCircleFill className="w-5 h-5 mr-2 text-red-500" />
+                            <InformationCircleIcon className="w-5 h-5 mr-2 text-red-500" />
                             <pre>{error}</pre>
                         </div>
                     )}
 
                     {success && (
                         <div className="rounded-lg bg-green-50 p-4 text-sm text-green-600 flex items-center">
-                            <Icons.RiCheckFill className="w-5 h-5 mr-2 text-green-500" />
+                            <CheckCircleIcon className="w-5 h-5 mr-2 text-green-500" />
                             <pre>{success}</pre>
                         </div>
                     )}
@@ -176,10 +184,10 @@ const handleSubmit = async (e) => {
                             ${loading 
                                 ? 'bg-blue-400 cursor-not-allowed' 
                                 : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
-                            } transition-all duration-150 ease-in-out`}
-                    >
+                            } transition-all duration-150 ease-in-out`}>
+                                <PencilIcon className="h-5 w-5 mr-1"/>
                         {loading && (
-                            <Icons.AiOutlineLoading3Quarters className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
+                            <ArrowPathIcon className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
 
                         )}
                         {loading ? 'Đang xử lý...' : 'Đăng ký'}

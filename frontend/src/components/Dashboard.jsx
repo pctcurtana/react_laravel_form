@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import {Icons} from '../App'
+import { CogIcon } from '@heroicons/react/24/solid'
+import { UserIcon } from '@heroicons/react/24/solid'
+import { UserGroupIcon } from '@heroicons/react/24/solid'
+import { XCircleIcon } from '@heroicons/react/24/solid'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
+import { PencilSquareIcon } from '@heroicons/react/24/solid'
+import { TrashIcon } from '@heroicons/react/24/solid'
 
 export default function Dashboard() {
     const [users, setUsers] = useState([])
@@ -98,13 +104,13 @@ export default function Dashboard() {
                     <div className="flex justify-between h-16">
                         <div className="flex items-center">
                             <h1 className="text-2xl font-bold text-gray-900 flex items-center">
-                            <Icons.RiAccountBox2Line className='flex items-center h-15 w-15 text-gray-500'  />
+                            <CogIcon className='flex items-center h-15 w-15'  />
                                 Quản lý tài khoản
                             </h1>
                         </div>
                         <div className="flex items-center">
                             <span className="text-gray-700 mr-4 flex items-center">
-                                <Icons.FaUser className="h-5 w-5 text-gray-400 mr-px" />
+                                <UserIcon className="h-5 w-5 text-gray-400 mr-px" />
                                 
                                 Xin chào, {currentUser?.username || 'User'} 
                             </span>
@@ -126,9 +132,7 @@ export default function Dashboard() {
                     <div className="bg-white rounded-lg shadow p-6">
                         <div className="flex items-center">
                             <div className="p-3 rounded-full bg-blue-100 text-blue-500">
-                                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
+                                <UserGroupIcon className='h-10 w-10'/>
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm text-gray-500">Tổng số người dùng</p>
@@ -195,14 +199,14 @@ export default function Dashboard() {
                                                             className="text-green-600 hover:text-green-900"
                                                             title="Lưu"
                                                         >
-                                                            <Icons.RiCheckFill className="h-5 w-5" />
+                                                            <CheckCircleIcon className="h-5 w-5" />
                                                         </button>
                                                         <button
                                                             onClick={handleCancelEdit}
-                                                            className="text-gray-600 hover:text-gray-900"
+                                                            className="text-red-600 hover:text-gray-900"
                                                             title="Hủy"
                                                         >
-                                                            <Icons.RiCloseCircleFill className="h-5 w-5" />
+                                                            <XCircleIcon className="h-5 w-5" />
                                                         </button>
                                                     </div>
                                                 ) : (
@@ -225,7 +229,7 @@ export default function Dashboard() {
                                                             onClick={() => handleEditClick(user)}
                                                             title="Sửa"
                                                         >
-                                                            <Icons.FiEdit className="inline-block h-5 w-5" />
+                                                            <PencilSquareIcon className="inline-block h-5 w-5" />
                                                         </button>
                                                         <button 
                                                             className="text-red-600 hover:text-red-900"
@@ -233,7 +237,7 @@ export default function Dashboard() {
                                                             disabled={deleteLoading}
                                                             title="Xóa"
                                                         >
-                                                            <Icons.RiDeleteBinLine className="inline-block h-5 w-5" />
+                                                            <TrashIcon className="inline-block h-5 w-5" />
                                                         </button>
                                                     </>
                                                 )}
