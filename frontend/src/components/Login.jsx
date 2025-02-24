@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { Icons } from '../App'
+import { UserCircleIcon } from '@heroicons/react/24/solid'
 
 
 export default function Login() {
@@ -109,17 +110,26 @@ export default function Login() {
                     )}
 
                     {/* Submit button */}
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white 
-                            ${loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
-                    >
-                        {loading && (
-                            <Icons.AiOutlineLoading3Quarters className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
-                        )}
-                        {loading ? 'Đang xử lý...' : 'Đăng nhập'}
-                    </button>
+                    <div className=''>
+                        
+                    </div>
+                    <div>
+                        <button
+                            
+                            type="submit"
+                            disabled={loading}
+                            className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white 
+                                ${loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
+                            {loading && (
+                                <Icons.AiOutlineLoading3Quarters className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
+                            )}
+                                    <UserCircleIcon className='h-5 w-5 mr-1'/>
+
+                            {loading ? 'Đang xử lý...' : 'Đăng nhập'}
+                                    
+
+                        </button>
+                    </div>
                     <p className="text-center text-sm text-gray-600">
                         Chưa có tài khoản?{' '}
                         <a href="/register" className="font-medium text-blue-600 hover:text-blue-500 transition-colors">

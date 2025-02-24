@@ -157,14 +157,14 @@ const handleSubmit = async (e) => {
                     {error && (
                         <div className="rounded-lg bg-red-50 p-4 text-sm text-red-600 flex items-center">
                             <Icons.RiCloseCircleFill className="w-5 h-5 mr-2 text-red-500" />
-                            {error}
+                            <pre>{error}</pre>
                         </div>
                     )}
 
                     {success && (
                         <div className="rounded-lg bg-green-50 p-4 text-sm text-green-600 flex items-center">
                             <Icons.RiCheckFill className="w-5 h-5 mr-2 text-green-500" />
-                            {success}
+                            <pre>{success}</pre>
                         </div>
                     )}
 

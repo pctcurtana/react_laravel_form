@@ -38,10 +38,10 @@ class AuthController extends Controller
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:6',
     ], [
-        'username.max' => 'Họ tên không được vượt quá 255 ký tự',
-        'email.unique' => 'Email này đã được sử dụng',
-        'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
-        'email.max' => 'Email không được vượt quá 255 ký tự'
+        'username.max' => 'Họ tên không được vượt quá 255 ký tự.',
+        'email.unique' => 'Email này đã được sử dụng.',
+        'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
+        'email.max' => 'Email không được vượt quá 255 ký tự.'
     ]);
 
     try {
