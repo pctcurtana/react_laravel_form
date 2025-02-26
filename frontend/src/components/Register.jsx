@@ -25,11 +25,11 @@ const handleSubmit = async (e) => {
     setError('')
     setSuccess('')
 
-    if (password !== confirmPassword) {
-        setError('Mật khẩu xác nhận không khớp')
-        setLoading(false)
-        return
-    }
+    // if (password !== confirmPassword) {
+    //     setError(response.data.errors.password)
+    //     setLoading(false)
+    //     return
+    // }
 
     try {
         const response = await axios.post('/api/register', {
@@ -39,6 +39,7 @@ const handleSubmit = async (e) => {
         })
         
         if (response.data.status === 'success') {
+
             setSuccess('Đăng ký thành công!')
             setTimeout(() => {
                 window.location.href = '/login'
@@ -85,7 +86,7 @@ const handleSubmit = async (e) => {
                                 <input
                                     id="name"
                                     type="text"
-                                    required
+                                   
                                     value={username}
                                     onChange={(e) => setuserName(e.target.value)}
                                     className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
@@ -107,7 +108,6 @@ const handleSubmit = async (e) => {
                                 <input
                                     id="email"
                                     type="email"
-                                    required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
@@ -130,7 +130,7 @@ const handleSubmit = async (e) => {
                                     <input
                                         id="password"
                                         type="password"
-                                        required
+                                       
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
@@ -151,7 +151,6 @@ const handleSubmit = async (e) => {
                                     <input
                                         id="confirmPassword"
                                         type="password"
-                                        required
                                         value={confirmPassword}
                                         onChange={(e) => setConfirmPassword(e.target.value)}
                                         className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"

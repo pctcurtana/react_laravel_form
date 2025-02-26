@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
-
+import ChatBox from './components/ChatBox'
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('user'))
 
@@ -11,6 +11,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/login" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login />} />
+                <Route path="/chatbox" element={isLoggedIn ? <ChatBox /> : <Navigate to="/login" />} />
                 <Route path="/register" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Register />} />
                 <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
                 <Route path="/" element={<Navigate to={isLoggedIn ? "/dashboard" : "/login"} />} />

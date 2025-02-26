@@ -27,15 +27,18 @@ export default function Login() {
             })
             
             if (response.data.status === 'success') {
-                setSuccess('Đăng nhập thành công!')
+                setSuccess(response?.data?.message)
                 localStorage.setItem('user', JSON.stringify(response.data.user))
-                // Reload trang để chuyển sang Dashboard
                 setTimeout(function () {
                 window.location.reload()
-                }, 2000)
+                }, 1000)
             }
         } catch (err) {
-            setError(err.response?.data?.message || 'Có lỗi xảy ra')
+            if (err.response?.status === 401){
+                setError('Email hoặc mật khẩu không đúng')
+                return;
+            }
+            setError('Có lỗi xảy ra');
         } finally {
             setLoading(false)
         }
@@ -43,7 +46,6 @@ export default function Login() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-50 to-white flex items-center justify-center p-4">
             <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-2xl">
-                {/* Header - giữ nguyên */}
                 <div className="text-center">
                     <h2 className="text-4xl font-bold text-gray-900 tracking-tight mb-2">
                         Chào mừng trở lại
@@ -55,7 +57,6 @@ export default function Login() {
 
                 <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                     <div className="space-y-5">
-                        {/* Email field */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                                 Địa chỉ email
@@ -75,7 +76,6 @@ export default function Login() {
                             </div>
                         </div>
 
-                        {/* Password field */}
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                                 Mật khẩu
@@ -96,9 +96,6 @@ export default function Login() {
                         </div>
                     </div>
 
-                    {/* Remember me & Forgot password - giữ nguyên */}
-
-                    {/* Error message */}
                     {error && (
                         <div className="rounded-lg bg-red-50 p-4 text-sm text-red-600 flex items-center">
                             <InformationCircleIcon className="w-5 h-5 mr-2 text-red-500" />
@@ -106,7 +103,6 @@ export default function Login() {
                         </div>
                     )}
 
-                    {/* Success message */}
                     {success && (
                         <div className="rounded-lg bg-green-50 p-4 text-sm text-green-600 flex items-center">
                             <CheckCircleIcon className="w-5 h-5 mr-2 text-green-500" />
@@ -114,13 +110,11 @@ export default function Login() {
                         </div>
                     )}
 
-                    {/* Submit button */}
                     <div className=''>
                         
                     </div>
                     <div>
                         <button
-                            
                             type="submit"
                             disabled={loading}
                             className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white 
@@ -131,7 +125,6 @@ export default function Login() {
                                 <UserCircleIcon className='h-5 w-5 mr-1'/>
                         
                             {loading ? 'Đang xử lý...' : 'Đăng nhập'}
-                                    
 
                         </button>
                     </div>

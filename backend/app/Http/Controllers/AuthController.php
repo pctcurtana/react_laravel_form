@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+
 
 class AuthController extends Controller
 {
@@ -33,16 +36,29 @@ class AuthController extends Controller
     $email = $request->email;
     $password = $request->password;
     $username = $request->username;
-    $request->validate([
+    $validator = Validator::make($request->all(), [
         'username' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:6',
+        'password' => 'required|string|min:6|confirmed',
     ], [
         'username.max' => 'Họ tên không được vượt quá 255 ký tự.',
+        'username.required' => 'Vui lòng nhập tên.',
+
         'email.unique' => 'Email này đã được sử dụng.',
+        'email.required' => 'Vui lòng nhập email.',
+        'email.max' => 'Email không được vượt quá 255 ký tự.',
+
         'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
-        'email.max' => 'Email không được vượt quá 255 ký tự.'
+        'password.required' => 'Vui lòng nhập mật khẩu.',
+        'password.confirmed' => 'Mật khẩu không khớp.',
     ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => 'error',
+            'errors' => $validator->errors()
+        ], 422);
+    }
 
     try {
         $user = User::create([

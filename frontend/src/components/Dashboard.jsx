@@ -7,7 +7,8 @@ import { XCircleIcon } from '@heroicons/react/24/solid'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { PencilSquareIcon } from '@heroicons/react/24/solid'
 import { TrashIcon } from '@heroicons/react/24/solid'
-
+import { SparklesIcon } from '@heroicons/react/24/solid'
+import { useNavigate } from 'react-router-dom'
 export default function Dashboard() {
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true)
@@ -42,6 +43,12 @@ export default function Dashboard() {
         localStorage.removeItem('user')
         window.location.href = '/login'
     }
+    const navigate = useNavigate();
+
+    const handleChat = () => {
+        navigate("/chatbox");
+    };
+    
     const handleDeleteUser = async (userId) => {
         if (!window.confirm('Bạn có chắc chắn muốn xóa người dùng này?')) {
             return
@@ -108,11 +115,12 @@ export default function Dashboard() {
                                 Quản lý tài khoản
                             </h1>
                         </div>
+                    
                         <div className="flex items-center">
                             <span className="text-gray-700 mr-4 flex items-center">
                                 <UserIcon className="h-5 w-5 text-gray-400 mr-px" />
                                 
-                                Xin chào, {currentUser?.username || 'User'} 
+                                Xin chào, {currentUser?.password || 'User'} 
                             </span>
                             <button
                                 onClick={handleLogout}
@@ -128,7 +136,7 @@ export default function Dashboard() {
             {/* Main Content */}
             <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 {/* Stats Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-8">
                     <div className="bg-white rounded-lg shadow p-6">
                         <div className="flex items-center">
                             <div className="p-3 rounded-full bg-blue-100 text-blue-500">
@@ -138,6 +146,16 @@ export default function Dashboard() {
                                 <p className="text-sm text-gray-500">Tổng số người dùng</p>
                                 <p className="text-2xl font-semibold text-gray-900">{users.length}</p>
                             </div>
+                            
+                        </div>
+                    </div>
+                    <div className="bg-white rounded-lg shadow p-6">
+                        <div className="flex items-center justify-center">
+                            
+                            <button onClick={handleChat} className='flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm py-3 px-4 me-2 mt-2 mb-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"'>
+                            <SparklesIcon className='w-5 h-5 mr-1' />
+                            Chat With AI
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -249,6 +267,7 @@ export default function Dashboard() {
                         </div>
                     )}
                 </div>
+                
             </div>
         </div>
     )
